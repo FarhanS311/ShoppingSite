@@ -11,7 +11,7 @@ const Cart = ()=>{
         dispatch(changeQty({...item,quantity:`${parseInt(quantity)+1}`}));
     }
     const decrementHandler = (item,quantity)=>{
-        if(quantity!==1)
+        if(parseInt(quantity)!==1)
             dispatch(changeQty({...item,quantity:`${parseInt(quantity)-1}`}));
         else
             dispatch(removeFromCart(item.id));
