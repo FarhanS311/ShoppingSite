@@ -5,10 +5,17 @@ const cart = (state=[],action)=>{
         case 'ADDTOCART':
             return [...state,payload];
         case 'REMOVEFROMCART':
-            return state.filter(obj=>obj.id!=payload);
-        // case 'INCREASE':
-        //         return [...state,{}];
-        // case 'DECREASE':
+            return state.filter(obj=>obj.id!==payload);
+        case 'INCREMENT_DECREMENT':
+                return state.map((obj)=>{
+                    if(obj.id===payload.id){
+                        return {...obj,quantity:payload.quantity};
+                    }
+                    else{
+                        return obj;
+                    }
+                });
+        // case 'DECREAMENT':
         //         return [];
         default:
             return state;

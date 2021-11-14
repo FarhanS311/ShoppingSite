@@ -1,7 +1,7 @@
 const addToCart = (props)=>{
     return {
         type:'ADDTOCART',
-        payload:{...props, quantity:"1"},
+        payload:props,
     }
 }
 export default addToCart;

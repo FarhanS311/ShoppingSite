@@ -2,8 +2,10 @@ const modalStatus = (state=false,action)=>{
     const {type} = action;
 
     switch(type){
-        case 'TOGGLE_MODAL':
-            return !state;
+        case 'SHOW_MODAL':
+            return true;
+        case 'HIDE_MODAL':
+            return false;
         default:
             return state;
     }

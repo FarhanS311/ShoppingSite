@@ -1,6 +1,0 @@
-const toggleModal = ()=>{
-    return {
-        type:'TOGGLE_MODAL',
-    }
-}
-export default toggleModal;

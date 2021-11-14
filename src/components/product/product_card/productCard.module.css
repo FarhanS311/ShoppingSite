@@ -3,14 +3,27 @@
     height: 380px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     border: 1px solid black;
     border-bottom: 3px solid black;
     border-radius: 5px;
+    padding: 10px;
+    margin: 20px;
+    text-align: center;
 }
 
 .cardImage{
-    width: 120px;
-    height: 150px;
+    width: 280px;
+    height: 250px;
+    max-height: 250px;
 }
+
+.cardName, .cardPrice{
+    height: 50px;
+    justify-self: end;
+}
+
+/* .cardPrice{
+    height: 50px;
+} */

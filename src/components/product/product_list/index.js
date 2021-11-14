@@ -4,12 +4,13 @@ import { useEffect } from "react";
 import setProductList from '../../../actions/setProductList';
 import resetProductList from '../../../actions/resetProductList';
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import ProductCard from '../product_card';
 import classes from './products.module.css';
-import toggleModal from '../../../actions/toggleModal';
-import selectProduct from "../../../actions/selectProduct";
+import hideModal from "../../../actions/hideModal";
 import ProductModal from '../product_modal';
+import toggleLoading from "../../../actions/toggleLoading";
+import LoadingComp from "../../loading";
+import unselectProduct from "../../../actions/unselectProduct";
 
 const ProductList = ()=>{
     
@@ -17,11 +18,12 @@ const ProductList = ()=>{
     const products = useSelector(state=>state.products);
     const dispatch = useDispatch();
     const isModalOpen = useSelector(state=>state.modalStatus);
+    const isLoading = useSelector(state=>state.isLoading);
 
     const productCards = products.map(obj=>{
         return(
                 // <Link to={`${url}/${obj.id}`} key={obj.id}>
-                    <ProductCard {...obj} />
+                    <ProductCard {...obj} key={obj.id} />
                 // </Link>
         )
     });
@@ -30,22 +32,30 @@ const ProductList = ()=>{
         async function fetchProductList(){
             try{
                 const response = await axios.get(`https://fakestoreapi.com/products/category/${category}`);
-                console.log(response.data);
+                // console.log(response.data);
                 // dispatch(resetProductList());
                 dispatch(setProductList(response.data));
+                dispatch(toggleLoading());
             }catch(error){
                 console.log(error);
             }
         }
+        dispatch(toggleLoading());
         fetchProductList();
 
-        return ()=>{dispatch(resetProductList());}
+        return ()=>{
+            dispatch(resetProductList());
+            dispatch(unselectProduct());
+            dispatch(hideModal());
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
     return (
         <>
             <div className={classes.cards}>
-                {productCards}
+
+                {isLoading? <LoadingComp/>: productCards}
             </div>
             {isModalOpen ? <ProductModal/>:''}
         </>

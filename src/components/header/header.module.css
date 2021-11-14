@@ -1,11 +1,25 @@
 .header{
     display: flex;
     justify-content: space-between;
-    border: 1px solid black;
     border-bottom: 3px solid black;
-    border-radius: 5px;
+    background-color: yellow;
+    position: fixed;
+    width: 100% ;
+    z-index: 100;
+    top: 0;
 }
 
 .title{
-    margin-left: 20px;
+    margin: 5px 20px;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.title:hover{
+    background-color: rgb(209, 209, 0);
 }
